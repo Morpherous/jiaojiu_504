@@ -1,0 +1,4 @@
+pandas==0.25.1
+geatpy==2.4.0
+pyansys==0.39.16
+numpy==1.18.2
