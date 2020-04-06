@@ -1,6 +1,7 @@
 import os
 import random
 from Conf import CONF
+from tqdm import tqdm
 
 
 class Turbulent():
@@ -12,20 +13,23 @@ class Turbulent():
     def generate_batch(self):
         for dlc in self.opt['DLC']:
             batch_num = 0
-            for dlcname, dlc_dict in dlc.items():
+            pbar = tqdm(dlc.items())
+            for dlcname, dlc_dict in pbar:
+                pbar.set_description('Processing %s' % dlcname)
                 if len(dlc_dict['MeanTur']):
-                    print("Generate %s `s turbulent" % (dlcname))
-
                     try:
                         os.makedirs(os.path.join(self.root_path, 'batch/Current_Turbulent/',
                                                  dlcname + '/'))
                     except:
                         pass
+
                     # 写batch.lst文件，batch_lst要记录所有流速，要先声明一下
+                    # 开头结构时NUMBAT num，后续结构是batch.x，
+                    # 因此每次新加结构batch.x
                     batch_lst = open(os.path.join(self.root_path, 'batch/Current_Turbulent/',
                                                   dlcname + '/', 'batch.lst'), 'w+')
                     batch_lst.write('NUMBAT	%d\n' % (len(dlc_dict['MeanTur'])))
-                    ######################
+                    ###############################################################
                     for velocity in dlc_dict['MeanSpeed']:
                         batch_num += 1
                         dlc_vel_path = os.path.join(self.root_path, 'batch/Current_Turbulent/' + dlcname)
@@ -90,6 +94,7 @@ class Turbulent():
                         batch_lst.write(
                             'IFILE	Batch.%d\nIPATH	"%s"\nIEXTN	turb\nIEXEC	3:windnd\nICALC	3\nISTST	-1;0;0;0;0\nIENAB	-1\nDISCON	-\n' % (
                                 batch_num, dlc_vel_store_path))
+
 
 # 测试代码
 # info = CONF()
