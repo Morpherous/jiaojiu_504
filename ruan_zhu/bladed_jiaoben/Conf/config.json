@@ -2,19 +2,18 @@
   "Root_path": "F:/bladed_test",
   "CurNTMConst": [7,20,20,70],
   "CurNTMTime": [11,70],
-  "DLC": [
-    {"DLC_11": {"MeanSpeed": [1.1,1.4],"MeanTur": [9.0,7.9]}},
-    {"DLC_12": {"MeanSpeed": [1,1.5,2,2.5,3.5],"MeanTur": []}},
-    {"DLC_13": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": []}},
-    {"DLC_21": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": []}},
-    {"DLC_22": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": []}},
-    {"DLC_23": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": []}},
-    {"DLC_41": {"MeanSpeed": [0.6,2,3.5],"MeanTur": []}},
-    {"DLC_42": {"MeanSpeed": [1,1.5,2,2.5,3.5],"MeanTur": []}},
-    {"DLC_51": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": [7.5,5.3,4.4,3.6]}},
-    {"DLC_52": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": []}},
-    {"DLC_61": {"MeanSpeed": [1],"MeanTur": [9.3]}},
-    {"DLC_62": {"MeanSpeed": [3.3],"MeanTur": [3.7]}}
-  ]
-
+  "DLC":{
+    "DLC_11": {"MeanSpeed": [1.1,1.4],"MeanTur": [9.0,7.9],"Csv_Path": ""},
+    "DLC_12": {"MeanSpeed": [1,1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
+    "DLC_13": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
+    "DLC_21": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
+    "DLC_22": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
+    "DLC_23": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
+    "DLC_41": {"MeanSpeed": [0.6,2,3.5],"MeanTur": [],"Csv_Path": ""},
+    "DLC_42": {"MeanSpeed": [1,1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
+    "DLC_51": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": [7.5,5.3,4.4,3.6],"Csv_Path": ""},
+    "DLC_52": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
+    "DLC_61": {"MeanSpeed": [1],"MeanTur": [9.3],"Csv_Path": ""},
+    "DLC_62": {"MeanSpeed": [3.3],"MeanTur": [3.7],"Csv_Path": ""}
+  }
 }
