@@ -17,7 +17,7 @@ class Turbulent():
             batch_num = 0
             if len(dlc_dict['MeanTur']):
                 try:
-                    os.makedirs(os.path.join(self.root_path, 'batch/Current_Turbulent/',
+                    os.makedirs(os.path.join(self.root_path, 'batch/current_Turbulent/',
                                              dlcname + '/'))
                 except:
                     pass
@@ -25,23 +25,23 @@ class Turbulent():
                 # 写batch.lst文件，batch_lst要记录所有流速，要先声明一下
                 # 开头结构时NUMBAT num，后续结构是batch.x，
                 # 因此每次新加结构batch.x
-                batch_lst = open(os.path.join(self.root_path, 'batch/Current_Turbulent/',
+                batch_lst = open(os.path.join(self.root_path, 'batch/current_Turbulent/',
                                               dlcname + '/', 'batch.lst'), 'w+')
                 batch_lst.write('NUMBAT	%d\n' % (len(dlc_dict['MeanTur'])))
                 ###############################################################
                 for velocity in dlc_dict['MeanSpeed']:
                     batch_num += 1
-                    dlc_vel_path = os.path.join(self.root_path, 'batch/Current_Turbulent/' + dlcname)
-                    dlc_vel_store_path = os.path.join(self.root_path, 'Current', dlcname, str(velocity))
+                    dlc_vel_path = os.path.join(self.root_path, 'batch/current_Turbulent/' + dlcname)
+                    dlc_vel_store_path = os.path.join(self.root_path, 'current', dlcname, str(velocity))
 
                     try:
                         os.makedirs(dlc_vel_path)
                     except:
                         pass
-                    try:
-                        os.makedirs(dlc_vel_store_path)
-                    except:
-                        pass
+                    # try:
+                    #     os.makedirs(dlc_vel_store_path)
+                    # except:
+                    #     pass
 
                     # 写batch.x文件
                     batch_num_file = open(os.path.join(dlc_vel_path, 'batch.' + str(batch_num)), 'w+')
@@ -98,5 +98,5 @@ class Turbulent():
 # 测试代码
 info = CONF()
 opt = info.parse_json()
-aaa = Turbulent(opt, 55)
+aaa = Turbulent(opt,-9.5)
 aaa.generate_batch()

@@ -15,68 +15,162 @@
 # WINDF	f:\bladed_test\current\dlc_11\1.4\b.wnd     .wnd文件生成位置
 
 import os
+import random
 from pprint import pprint
 import pandas as pd
+from Conf import CONF
+import numpy
+from tqdm import tqdm
 
 
 class DLC_11():
-    def __init__(self, opt, fa, fb):
+    def __init__(self, opt, fa_num, fb_num, fa_prj, fb_prj):
         self.opt = opt
-        self.fa = fa
-        self.fb = fb
-        self.compare_result = []
+        self.fa_num = fa_num
+        self.fb_num = fb_num
+        self.fa_prj = fa_prj
+        self.fb_prj = fb_prj
+        self.compare_result_num = []
+        self.compare_result_prj = []
 
     def compare_file(self):
-        with open(self.fa, 'r') as fa:
+        with open(self.fa_num, 'r') as fa:
             fa_lines = fa.readlines()
-        with open(self.fb, 'r') as fb:
+        with open(self.fb_num, 'r') as fb:
             fb_lines = fb.readlines()
         for i in range(len(fa_lines)):
             if fa_lines[i] != fb_lines[i]:
-                self.compare_result.append(i)
-        print('==========%s and %s compare=======' % (self.fa.split('/')[-1], self.fb.split('/')[-1]))
-        for index in self.compare_result:
+                self.compare_result_num.append(i)
+        print('==========%s and %s compare=======' %
+              (self.fa_num.split('/')[-1], self.fb_num.split('/')[-1]))
+        for index in self.compare_result_num:
             print(fa_lines[index])
         print('===================end===================')
 
-    def replace_file_by_parameters(self, parameters):
-        with open(self.fa, 'r') as f:
+        with open(self.fa_prj, 'r') as ffa:
+            ffa_lines = ffa.readlines()
+        with open(self.fb_prj, 'r') as ffb:
+            ffb_lines = ffb.readlines()
+        for i in range(len(ffa_lines)):
+            if ffa_lines[i] != ffb_lines[i]:
+                self.compare_result_prj.append(i)
+        # print('==========%s and %s compare=======' %
+        #       (self.fa_prj.split('/')[-1], self.fb_prj.split('/')[-1]))
+        # for index in self.compare_result_prj:
+        #     print(ffa_lines[index])
+        # print('===================end===================')
+
+    def replace_file_by_parameters(self, file, compare_result_num, parameters):
+        with open(file, 'r') as f:
             lines = f.readlines()
-        for i in range(len(self.compare_result)):
-            index = self.compare_result[i]
+        for i in range(len(compare_result_num)):
+            index = compare_result_num[i]
             temp_line = ''
-            if 'PATH' in lines[index]:
+            if 'PATH' in lines[index] and 'PATH' in parameters:
                 temp_line = parameters['PATH']
-            if 'OUTSTR' in lines[index]:
+            if 'OUTSTR' in lines[index] and 'OUTSTR' in parameters:
                 temp_line = parameters['OUTSTR']
-            if 'ENDT' in lines[index]:
+            if 'ENDT' in lines[index] and 'ENDT' in parameters:
                 temp_line = parameters['ENDT']
-            if 'US0Z0' in lines[index]:
+            if 'US0Z0' in lines[index] and 'US0Z0' in parameters:
                 temp_line = parameters['US0Z0']
-            if 'MUCS' in lines[index]:
+            if 'MUCS' in lines[index] and 'MUCS' in parameters:
                 temp_line = parameters['MUCS']
-            if 'TIDE' in lines[index]:
+            if 'TIDE' in lines[index] and 'TIDE' in parameters:
                 temp_line = parameters['TIDE']
-            if 'TP' in lines[index]:
+            if 'TP' in lines[index] and 'TP' in parameters:
                 temp_line = parameters['TP']
-            if 'HS' in lines[index]:
+            if 'HS' in lines[index] and 'HS' in parameters:
                 temp_line = parameters['HS']
-            if 'GAMMA' in lines[index]:
+            if 'GAMMA' in lines[index] and 'GAMMA' in parameters:
                 temp_line = parameters['GAMMA']
-            if 'MUW' in lines[index]:
+            if 'MUW' in lines[index] and 'MUW' in parameters:
                 temp_line = parameters['MUW']
-            if 'IDUM' in lines[index]:
+            if 'IDUM' in lines[index] and 'IDUM' in parameters:
                 temp_line = parameters['IDUM']
-            if 'TI' in lines[index]:
+            if 'TI' in lines[index] and 'TI' in parameters:
                 temp_line = parameters['TI']
-            if 'TI_V' in lines[index]:
+            if 'TI_V' in lines[index] and 'TI_V' in parameters:
                 temp_line = parameters['TI_V']
-            if 'TI_W' in lines[index]:
+            if 'TI_W' in lines[index] and 'TI_W' in parameters:
                 temp_line = parameters['TI_W']
-            if 'WINDF' in lines[index]:
+            if 'WINDF' in lines[index] and 'WINDF' in parameters:
                 temp_line = parameters['WINDF']
             lines[index] = temp_line
         return lines
 
     def generate_batch(self):
-        csv_fil = pd.read_csv(self.opt['DLC']['DLC_11']['Csv_Path'])
+        batch_num = 1
+        csv_file = pd.read_csv(self.opt['DLC']['DLC_11']['Csv_Path'])
+        pbar = tqdm(range(csv_file.shape[0]))
+
+        try:
+            os.makedirs(os.path.join(self.opt['Root_path'], 'batch/dlc1.1/'))
+        except:
+            pass
+
+        batch_lst = open(os.path.join(self.opt['Root_path'], 'batch/dlc1.1/', 'batch.lst'),'w+')
+        batch_lst.write('NUMBAT	%d\n' % csv_file.shape[0])
+        for index in pbar:
+            pbar.set_description('Generating Batch DLC1.1')
+            # 写batch.x文件
+            path = 'PATH\t%s\n' % os.path.join(self.opt['Root_path'], 'run/dlc1.1/',
+                                               csv_file.iloc[index]['dlc_index'][-3:])
+            outstr = 'OUTSTR\t%d\n' % csv_file.iloc[index]['OUTSTR']
+            endt = 'ENDT\t%d\n' % csv_file.iloc[index]['ENDT']
+            us0z0 = 'US0Z0\t%.1f\n' % csv_file.iloc[index]['US0Z0']
+            mucs = 'MUCS\t%f\n' % ((csv_file.iloc[index]['MUCS'] + 180) * 3.14159 / 180)
+            tide = 'TIDE\t%d\n' % csv_file.iloc[index]['TIDE']
+            tp = 'TP\t%.1f\n' % csv_file.iloc[index]['TP']
+            hs = 'HS\t%.1f\n' % csv_file.iloc[index]['HS']
+            gamma = 'GAMMA\t%f\n' % csv_file.iloc[index]['GAMMA']
+            muw = 'MUW\t%f\n' % ((csv_file.iloc[index]['MUW'] + 180) * 3.14159 / 180)
+            idum = 'IDUM\t%d\n' % random.randint(1, 999)
+            ti = 'TI\t%f\n' % csv_file.iloc[index]['TI']
+            ti_v = 'TI_V\t%.1f\n' % (csv_file.iloc[index]['TI'] * 0.8)
+            ti_w = 'TI_W\t%.1f\n' % (csv_file.iloc[index]['TI'] * 0.5)
+            windf = 'WINDF\t%s\n' % os.path.join(self.opt['Root_path'], 'Current/DLC_11/',
+                                                 str(csv_file.iloc[index]['US0Z0']), 'turb.wnd')
+            param_num = {'PATH': path, 'OUTSTR': outstr, 'ENDT': endt, 'US0Z0': us0z0,
+                         'MUCS': mucs, 'TIDE': tide, 'TP': tp, 'HS': hs,
+                         'GAMMA': gamma, 'MUW': muw, 'IDUM': idum,
+                         'TI': ti, 'TI_V': ti_v, 'TI_W': ti_w,
+                         'WINDF': windf}
+
+            lines_num = self.replace_file_by_parameters(self.fa_num, self.compare_result_num, param_num)
+
+            try:
+                os.makedirs(os.path.join(self.opt['Root_path'], 'batch/dlc1.1/'))
+            except:
+                pass
+
+            with open(os.path.join(self.opt['Root_path'], 'batch/dlc1.1/', 'Batch.' + str(batch_num)), 'w+') as f:
+                for line in lines_num:
+                    f.write(str(line))
+
+            # 写batch.prj文件
+            param_prj = {
+                'OUTSTR': outstr, 'ENDT': endt, 'US0Z0': us0z0,
+                'MUCS': mucs, 'TP': tp, 'HS': hs,
+                'GAMMA': gamma, 'MUW': muw, 'IDUM': idum,
+                'TI': ti, 'TI_V': ti_v, 'TI_W': ti_w,
+                'WINDF': windf
+            }
+            lines_prj = self.replace_file_by_parameters(self.fa_prj, self.compare_result_prj, param_prj)
+            with open(os.path.join(self.opt['Root_path'], 'batch/dlc1.1/', 'BatchPrj.' + str(batch_num)), 'w+') as ff:
+                for line in lines_prj:
+                    ff.write(str(line))
+
+            batch_lst.write(
+                'IFILE	Batch.%d\nIPATH	"%s"\nIEXTN	powprod\nIEXEC	4:dtbladed\nICALC	10\nISTST	-1;0;-1;-1;0\nIENAB	-1\nDISCON	-\n' % (
+                    batch_num, os.path.join(self.opt['Root_path'], 'run/dlc1.1/',
+                                            csv_file.iloc[index]['dlc_index'][-3:])
+                ))
+            batch_num += 1
+
+
+opt = CONF().parse_json()
+dlc11 = DLC_11(opt, 'F:/01_LoadCaseCreat\Batch\dlc1.1\Batch.13', 'F:/01_LoadCaseCreat\Batch\dlc1.1\Batch.9',
+               'F:/01_LoadCaseCreat\Batch\dlc1.1\BatchPrj.13', 'F:/01_LoadCaseCreat\Batch\dlc1.1\BatchPrj.9')
+dlc11.compare_file()
+dlc11.generate_batch()
