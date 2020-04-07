@@ -1,19 +1,284 @@
 {
   "Root_path": "F:/bladed_test",
-  "CurNTMConst": [7,20,20,70],
-  "CurNTMTime": [11,70],
-  "DLC":{
-    "DLC_11": {"MeanSpeed": [1.1,1.4],"MeanTur": [9.0,7.9],"Csv_Path": ""},
-    "DLC_12": {"MeanSpeed": [1,1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
-    "DLC_13": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
-    "DLC_21": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
-    "DLC_22": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
-    "DLC_23": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
-    "DLC_41": {"MeanSpeed": [0.6,2,3.5],"MeanTur": [],"Csv_Path": ""},
-    "DLC_42": {"MeanSpeed": [1,1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
-    "DLC_51": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": [7.5,5.3,4.4,3.6],"Csv_Path": ""},
-    "DLC_52": {"MeanSpeed": [1.5,2,2.5,3.5],"MeanTur": [],"Csv_Path": ""},
-    "DLC_61": {"MeanSpeed": [1],"MeanTur": [9.3],"Csv_Path": ""},
-    "DLC_62": {"MeanSpeed": [3.3],"MeanTur": [3.7],"Csv_Path": ""}
+  "CurNTMConst": [
+    7,
+    20,
+    20,
+    70
+  ],
+  "CurNTMTime": [
+    11,
+    70
+  ],
+  "DLC": {
+
+    "DLC_11": {
+      "MeanSpeed": [
+        1.1,
+        1.4,
+        1.7,
+        2.0,
+        2.3,
+        2.6,
+        2.9,
+        3.2
+      ],
+      "MeanTur": [
+        9.0,
+        7.9,
+        6.6,
+        5.3,
+        4.7,
+        4.3,
+        4,
+        3.8
+      ],
+      "OUTSTR": 10,
+      "ENDT": 610,
+      "MUCS": [
+        -8,
+        0,
+        8
+      ],
+      "MUW": [
+        -15,
+        0,
+        15
+      ],
+      "HS": 0.3,
+      "TP": 3.8,
+      "TIDE": [
+        30
+      ],
+      "GAMMA": 3.3,
+      "Csv_Path": "F:/dlc11.csv"
+    },
+
+    "DLC_12": {
+      "MeanSpeed": [
+        1,
+        1.5,
+        2,
+        2.5,
+        3.5
+      ],
+      "MeanTur": [],
+      "OUTSTR": 10,
+      "ENDT": 70,
+      "MUCS": [
+        -30,
+        0,
+        30
+      ],
+      "MUW": [
+        0
+      ],
+      "HS": 1,
+      "TP": 5.1,
+      "TIDE": [
+        27,
+        30,
+        33
+      ],
+      "GAMMA": 3.3,
+      "Csv_Path": "F:/dlc12.csv"
+    },
+
+    "DLC_13": {
+      "MeanSpeed": [
+        1.5,
+        2,
+        2.5,
+        3.5
+      ],
+      "MeanTur": [],
+      "OUTSTR": 10,
+      "ENDT": 70,
+      "MUCS": [
+        0
+      ],
+      "MUW": [
+        0
+      ],
+      "HS": 1,
+      "TP": 5.1,
+      "TIDE": [
+        27,
+        30,
+        33
+      ],
+      "GAMMA": 3.3,
+      "Csv_Path": "F:/dlc13.csv"
+    },
+
+    "DLC_21": {
+    },
+
+    "DLC_22": {
+      "MeanSpeed": [
+        1.5,
+        2,
+        2.5,
+        3.5
+      ],
+      "MeanTur": [
+      ],
+      "OUTSTR": 10,
+      "ENDT": 610,
+      "MUCS": [
+        0
+      ],
+      "MUW": [
+        0
+      ],
+      "HS": 0.3,
+      "TP": 3.8,
+      "TIDE": [
+        30
+      ],
+      "GAMMA": 3.3,
+      "BREAKDOWN_PITCH": [
+        0,
+        3,
+        6,
+        9,
+        12,
+        15
+      ],
+      "Csv_Path": "F:/dlc22.csv"
+    },
+
+    "DLC_23": {
+    },
+
+    "DLC_41": {
+    },
+
+    "DLC_42": {
+      "MeanSpeed": [
+        1,
+        1.5,
+        2,
+        2.5,
+        3.5
+      ],
+      "MeanTur": [
+      ],
+      "OUTSTR": 10,
+      "ENDT": 610,
+      "MUCS": [
+        -30,
+        0,
+        30
+      ],
+      "MUW": [
+        0
+      ],
+      "HS": 1,
+      "TP": 5.1,
+      "TIDE": [
+        27,
+        30,
+        33
+      ],
+      "GAMMA": 3.3,
+      "Csv_Path": "F:/dlc42.csv"
+    },
+
+    "DLC_51": {
+      "MeanSpeed": [
+        1.5,
+        2,
+        2.5,
+        3.5
+      ],
+      "MeanTur": [
+        7.5,
+        5.3,
+        4.4,
+        3.6
+      ],
+      "OUTSTR": 10,
+      "ENDT": 610,
+      "MUCS": [
+        -8,
+        0,
+        8
+      ],
+      "MUW": [
+        -30,
+        -15,
+        0,
+        15,
+        30
+      ],
+      "HS": 0.3,
+      "TP": 3.8,
+      "TIDE": [
+        30
+      ],
+      "GAMMA": 3.3,
+      "Csv_Path": "F:/dlc51.csv"
+    },
+
+    "DLC_52": {
+      "MeanSpeed": [
+        1.5,
+        2,
+        2.5,
+        3.5
+      ],
+      "MeanTur": [],
+      "OUTSTR": 10,
+      "ENDT": 70,
+      "MUCS": [
+        0
+      ],
+      "MUW": [
+        0
+      ],
+      "HS": 1,
+      "TP": 5.1,
+      "TIDE": [
+        27,
+        30,
+        33
+      ],
+      "GAMMA": 3.3,
+      "Csv_Path": "F:/dlc52.csv"
+    },
+
+    "DLC_61": {
+    },
+
+    "DLC_62": {
+      "MeanSpeed": [
+        3.3
+      ],
+      "MeanTur": [
+        3.7
+      ],
+      "OUTSTR": 10,
+      "ENDT": 610,
+      "MUCS": [
+        -30,
+        30
+      ],
+      "MUW": [
+        -30,
+        0,
+        30
+      ],
+      "HS": 1,
+      "TP": 5.1,
+      "TIDE": [
+        27,
+        30,
+        33
+      ],
+      "GAMMA": 3.3,
+      "Csv_Path": "F:/dlc62.csv"
+    },
+
   }
 }
