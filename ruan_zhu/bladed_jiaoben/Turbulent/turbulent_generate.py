@@ -96,7 +96,7 @@ class Turbulent():
 
 
 # 测试代码
-info = CONF()
-opt = info.parse_json()
-aaa = Turbulent(opt,-9.5)
-aaa.generate_batch()
+# info = CONF()
+# opt = info.parse_json()
+# aaa = Turbulent(opt,-9.5)
+# aaa.generate_batch()

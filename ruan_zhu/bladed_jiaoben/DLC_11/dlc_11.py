@@ -109,18 +109,19 @@ class DLC_11():
         except:
             pass
 
-        batch_lst = open(os.path.join(self.opt['Root_path'], 'batch/dlc1.1/', 'batch.lst'),'w+')
+        batch_lst = open(os.path.join(self.opt['Root_path'], 'batch/dlc1.1/', 'batch.lst'), 'w+')
+        batch_lst.write('VERSION	4.3.0.74\n')
         batch_lst.write('NUMBAT	%d\n' % csv_file.shape[0])
         for index in pbar:
             pbar.set_description('Generating Batch DLC1.1')
             # 写batch.x文件
-            path = 'PATH\t%s\n' % os.path.join(self.opt['Root_path'], 'run/dlc1.1/',
-                                               csv_file.iloc[index]['dlc_index'][-3:])
+            path = ('PATH\t%s\n' % os.path.join(self.opt['Root_path'], 'run/dlc1.1/',
+                                                csv_file.iloc[index]['dlc_index'][-3:])).replace('/', '\\')
             outstr = 'OUTSTR\t%d\n' % csv_file.iloc[index]['OUTSTR']
             endt = 'ENDT\t%d\n' % csv_file.iloc[index]['ENDT']
             us0z0 = 'US0Z0\t%.1f\n' % csv_file.iloc[index]['US0Z0']
             mucs = 'MUCS\t%f\n' % ((csv_file.iloc[index]['MUCS'] + 180) * 3.14159 / 180)
-            tide = 'TIDE\t%d\n' % csv_file.iloc[index]['TIDE']
+            tide = 'TIDE\t%d\n' % (csv_file.iloc[index]['TIDE'] - 30)
             tp = 'TP\t%.1f\n' % csv_file.iloc[index]['TP']
             hs = 'HS\t%.1f\n' % csv_file.iloc[index]['HS']
             gamma = 'GAMMA\t%f\n' % csv_file.iloc[index]['GAMMA']
@@ -129,8 +130,8 @@ class DLC_11():
             ti = 'TI\t%f\n' % csv_file.iloc[index]['TI']
             ti_v = 'TI_V\t%.1f\n' % (csv_file.iloc[index]['TI'] * 0.8)
             ti_w = 'TI_W\t%.1f\n' % (csv_file.iloc[index]['TI'] * 0.5)
-            windf = 'WINDF\t%s\n' % os.path.join(self.opt['Root_path'], 'Current/DLC_11/',
-                                                 str(csv_file.iloc[index]['US0Z0']), 'turb.wnd')
+            windf = ('WINDF\t%s\n' % os.path.join(self.opt['Root_path'], 'current/DLC_11/',
+                                                  str(csv_file.iloc[index]['US0Z0']), 'turb.wnd')).replace('/', '\\')
             param_num = {'PATH': path, 'OUTSTR': outstr, 'ENDT': endt, 'US0Z0': us0z0,
                          'MUCS': mucs, 'TIDE': tide, 'TP': tp, 'HS': hs,
                          'GAMMA': gamma, 'MUW': muw, 'IDUM': idum,
@@ -162,15 +163,19 @@ class DLC_11():
                     ff.write(str(line))
 
             batch_lst.write(
-                'IFILE	Batch.%d\nIPATH	"%s"\nIEXTN	powprod\nIEXEC	4:dtbladed\nICALC	10\nISTST	-1;0;-1;-1;0\nIENAB	-1\nDISCON	-\n' % (
-                    batch_num, os.path.join(self.opt['Root_path'], 'run/dlc1.1/',
-                                            csv_file.iloc[index]['dlc_index'][-3:])
+                'IFILE	Batch.%d\nIPATH\t%s\nIEXTN\tpowprod\nIEXEC\t4:dtbladed\nICALC	10\nISTST\t-1;0;-1;-1;0\nIENAB\t-1\nDISCON\t-\n' % (
+                    batch_num, (os.path.join(self.opt['Root_path'], 'run/dlc1.1/',
+                                             csv_file.iloc[index]['dlc_index'][-3:])).replace('/', '\\')
                 ))
             batch_num += 1
 
+    def run_dlc11(self):
+        self.compare_file()
+        self.generate_batch()
 
+
+# 测试代码
 opt = CONF().parse_json()
-dlc11 = DLC_11(opt, 'F:/01_LoadCaseCreat\Batch\dlc1.1\Batch.13', 'F:/01_LoadCaseCreat\Batch\dlc1.1\Batch.9',
-               'F:/01_LoadCaseCreat\Batch\dlc1.1\BatchPrj.13', 'F:/01_LoadCaseCreat\Batch\dlc1.1\BatchPrj.9')
-dlc11.compare_file()
-dlc11.generate_batch()
+dlc11 = DLC_11(opt, '../DLC_11/compare_file/Batch.1', '../DLC_11/compare_file/Batch.2',
+               '../DLC_11/compare_file/BatchPrj.1', '../DLC_11/compare_file/BatchPrj.2')
+dlc11.run_dlc11()
