@@ -1,5 +1,6 @@
 {
   "Root_path": "F:/bladed_test",
+  "HEIGHT": -9.5,
   "CurNTMConst": [
     7,
     20,
@@ -11,7 +12,6 @@
     70
   ],
   "DLC": {
-
     "DLC_11": {
       "MeanSpeed": [
         1.1,
@@ -53,7 +53,6 @@
       "GAMMA": 3.3,
       "Csv_Path": "F:/dlc11.csv"
     },
-
     "DLC_12": {
       "MeanSpeed": [
         1,
@@ -83,7 +82,6 @@
       "GAMMA": 3.3,
       "Csv_Path": "F:/dlc12.csv"
     },
-
     "DLC_13": {
       "MeanSpeed": [
         1.5,
@@ -110,10 +108,10 @@
       "GAMMA": 3.3,
       "Csv_Path": "F:/dlc13.csv"
     },
-
     "DLC_21": {
+      "MeanTur": [
+      ]
     },
-
     "DLC_22": {
       "MeanSpeed": [
         1.5,
@@ -147,15 +145,12 @@
       ],
       "Csv_Path": "F:/dlc22.csv"
     },
-
     "DLC_23": {
       "MeanTur": []
     },
-
     "DLC_41": {
       "MeanTur": []
     },
-
     "DLC_42": {
       "MeanSpeed": [
         1,
@@ -186,7 +181,6 @@
       "GAMMA": 3.3,
       "Csv_Path": "F:/dlc42.csv"
     },
-
     "DLC_51": {
       "MeanSpeed": [
         1.5,
@@ -222,7 +216,6 @@
       "GAMMA": 3.3,
       "Csv_Path": "F:/dlc51.csv"
     },
-
     "DLC_52": {
       "MeanSpeed": [
         1.5,
@@ -249,11 +242,9 @@
       "GAMMA": 3.3,
       "Csv_Path": "F:/dlc52.csv"
     },
-
     "DLC_61": {
       "MeanTur": []
     },
-
     "DLC_62": {
       "MeanSpeed": [
         3.3
@@ -282,6 +273,5 @@
       "GAMMA": 3.3,
       "Csv_Path": "F:/dlc62.csv"
     }
-
   }
 }

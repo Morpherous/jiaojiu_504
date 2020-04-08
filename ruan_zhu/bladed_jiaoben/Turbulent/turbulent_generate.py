@@ -5,10 +5,10 @@ from tqdm import tqdm
 
 
 class Turbulent():
-    def __init__(self, opt, refht):
+    def __init__(self, opt):
         self.root_path = opt['Root_path']
         self.opt = opt
-        self.Lambda = refht * 0.7 if refht < 60 else 42
+        self.Lambda = opt['HEIGHT']* 0.7 if opt['HEIGHT'] < 60 else 42
 
     def generate_batch(self):
         pbar = tqdm(self.opt['DLC'].items())

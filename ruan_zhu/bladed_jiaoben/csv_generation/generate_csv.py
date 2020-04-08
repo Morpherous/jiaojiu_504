@@ -255,7 +255,7 @@ class Generate_Csv():
         self.generate_dlc62()
 
 
-# 测试代码
-opt = CONF().parse_json()
-all_csv = Generate_Csv(opt)
-all_csv.generate_all_csv()
+# # 测试代码
+# opt = CONF().parse_json()
+# all_csv = Generate_Csv(opt)
+# all_csv.generate_all_csv()

@@ -175,7 +175,7 @@ class DLC_11():
 
 
 # 测试代码
-opt = CONF().parse_json()
-dlc11 = DLC_11(opt, '../DLC_11/compare_file/Batch.1', '../DLC_11/compare_file/Batch.2',
-               '../DLC_11/compare_file/BatchPrj.1', '../DLC_11/compare_file/BatchPrj.2')
-dlc11.run_dlc11()
+# opt = CONF().parse_json()
+# dlc11 = DLC_11(opt, '../DLC_11/compare_file/Batch.1', '../DLC_11/compare_file/Batch.2',
+#                '../DLC_11/compare_file/BatchPrj.1', '../DLC_11/compare_file/BatchPrj.2')
+# dlc11.run_dlc11()

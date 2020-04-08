@@ -4,7 +4,7 @@ import os
 
 class CONF():
     def parse_json(self):
-        info = json.load(open('../Conf/config.json', 'rb'))
+        info = json.load(open('./Conf/config.json', 'rb'))
         print("===============user config=======================")
         pprint(info)
         print('==================end============================')
