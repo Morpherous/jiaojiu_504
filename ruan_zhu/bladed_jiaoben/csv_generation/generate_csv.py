@@ -94,14 +94,14 @@ class Generate_Csv():
                 hs = self.opt['DLC']['DLC_13']['HS']
                 tp = self.opt['DLC']['DLC_13']['TP']
                 MUW = self.opt['DLC']['DLC_13']['MUW'][0]
-                # gamma = self.opt['DLC']['DLC_13']['GAMMA']
+                gamma = self.opt['DLC']['DLC_13']['GAMMA']
                 tide = self.opt['DLC']['DLC_13']['TIDE'][tide_index]
                 outstr = self.opt['DLC']['DLC_13']['OUTSTR']
                 endt = self.opt['DLC']['DLC_13']['ENDT']
                 add_data = pd.Series(
                     {'dlc_index': dlc_index, 'US0Z0': US0Z0, 'MUCS': MUCS,
                      'HS': hs, 'TP': tp, 'MUW': MUW, 'TIDE': tide,
-                     'OUTSTR': outstr, 'ENDT': endt})
+                     'OUTSTR': outstr, 'ENDT': endt, 'GAMMA': gamma})
                 df = df.append(add_data, ignore_index=True)
             stra = chr(ord(stra) + 1)
         df.to_csv(self.opt['DLC']['DLC_13']['Csv_Path'], index=False)
@@ -122,14 +122,14 @@ class Generate_Csv():
                 hs = self.opt['DLC']['DLC_22']['HS']
                 tp = self.opt['DLC']['DLC_22']['TP']
                 MUW = self.opt['DLC']['DLC_22']['MUW'][0]
-                # gamma = self.opt['DLC']['DLC_22']['GAMMA']
+                gamma = self.opt['DLC']['DLC_22']['GAMMA']
                 tide = self.opt['DLC']['DLC_22']['TIDE'][0]
                 outstr = self.opt['DLC']['DLC_22']['OUTSTR']
                 endt = self.opt['DLC']['DLC_22']['ENDT']
                 pitch = self.opt['DLC']['DLC_22']['BREAKDOWN_PITCH'][pitch_index]
                 add_data = pd.Series(
                     {'dlc_index': dlc_index, 'US0Z0': US0Z0, 'MUCS': MUCS,
-                     'HS': hs, 'TP': tp, 'MUW': MUW, 'TIDE': tide,
+                     'HS': hs, 'TP': tp, 'MUW': MUW, 'TIDE': tide, 'GAMMA': gamma,
                      'OUTSTR': outstr, 'ENDT': endt, 'PITCH': pitch})
                 df = df.append(add_data, ignore_index=True)
             stra = chr(ord(stra) + 1)
@@ -254,7 +254,8 @@ class Generate_Csv():
         self.generate_dlc52()
         self.generate_dlc62()
 
+
 # 测试代码
-# opt = CONF().parse_json()
-# all_csv = Generate_Csv(opt)
-# all_csv.generate_all_csv()
+opt = CONF().parse_json()
+all_csv = Generate_Csv(opt)
+all_csv.generate_all_csv()
