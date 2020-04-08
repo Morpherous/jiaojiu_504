@@ -1,4 +1,6 @@
-#Blade模板文件生成
+#注意：本程序只适用于bladed4.3，其他版本可以自行编写
+
+#一、Blade模板文件生成
 ![batchqueue](.README_images/440abfa6.png)
 
 ![Change batch directory](.README_images/406364db.png)
@@ -23,5 +25,46 @@
 
 选择batch.lst文件导入，然后Start Batch即可开始计算
 
-#注意：本程序只适用于bladed4.3，其他版本可以自行编写
+
+#二、文件说明
+CONF:配置文件
+csv_generation:工况csv文件生成
+Turbulent:湍流文件生成
+DLC_xx:各个工况计算文件生成
+
+#三、RUN
+运行main.py函数即可，main函数会依次运行以下函数：
+1.程序首先加载配置文件，所有工况信息和需要配置的信息都在./Conf/config.json文件下；
+
+2.运行csv_generation类，生成所有的csv工况文件；
+
+3.运行Turbulent类，生成湍流文件，湍流文件只和流速有关，不需要依照模板生成，直接生成即可；
+
+4.运行DLC_XX类，开始生成各个工况的中间计算文件，程序会自动建立需要的文件夹，不需要预先建立（除root_path外）。
+
+运行main之前，需要在/DLC_XX/compare_file中生成两种不同工况（用来对比得到需要修改的参数，中间文件生成过程见上）。
+
+注意，流剪切，风流速、流向这三个参数直接设置一样的就可以，如果需要不同的参数，可修改DLC_XX/dlc_xx.py中的
+param_num部分即可。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

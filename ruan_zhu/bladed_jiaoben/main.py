@@ -66,9 +66,9 @@ dlc52 = DLC_52(opt, './DLC_52/compare_file/Batch.1', './DLC_52/compare_file/Batc
                './DLC_52/compare_file/BatchPrj.1', './DLC_52/compare_file/BatchPrj.2')
 dlc52.run_dlc52()
 
-# dlc61 = DLC_61(opt, './DLC_61/compare_file/Batch.1', './DLC_61/compare_file/Batch.2',
-#                './DLC_61/compare_file/BatchPrj.1', './DLC_61/compare_file/BatchPrj.2')
-# dlc61.run_dlc61()
+dlc61 = DLC_61(opt, './DLC_61/compare_file/Batch.1', './DLC_61/compare_file/Batch.2',
+               './DLC_61/compare_file/BatchPrj.1', './DLC_61/compare_file/BatchPrj.2')
+dlc61.run_dlc61()
 
 dlc62 = DLC_62(opt, './DLC_62/compare_file/Batch.1', './DLC_62/compare_file/Batch.2',
                './DLC_62/compare_file/BatchPrj.1', './DLC_62/compare_file/BatchPrj.2')
