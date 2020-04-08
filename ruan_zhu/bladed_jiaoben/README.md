@@ -34,6 +34,7 @@ DLC_xx:各个工况计算文件生成
 
 #三、RUN
 运行main.py函数即可，main函数会依次运行以下函数：
+
 1.程序首先加载配置文件，所有工况信息和需要配置的信息都在./Conf/config.json文件下；
 
 2.运行csv_generation类，生成所有的csv工况文件；
