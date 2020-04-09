@@ -13,7 +13,7 @@ class Turbulent():
     def generate_batch(self):
         pbar = tqdm(self.opt['DLC'].items())
         for dlcname, dlc_dict in pbar:
-            pbar.set_description('Processing')
+            pbar.set_description('Processing Turbulent')
             batch_num = 0
             if len(dlc_dict['MeanTur']):
                 try:

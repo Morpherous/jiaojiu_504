@@ -1,6 +1,6 @@
 #注意：本程序只适用于bladed4.3，其他版本可以自行编写
 
-#一、Blade模板文件生成
+#一、Blade中间文件生成
 ![batchqueue](.README_images/440abfa6.png)
 
 ![Change batch directory](.README_images/406364db.png)
@@ -32,7 +32,12 @@ csv_generation:工况csv文件生成
 Turbulent:湍流文件生成
 DLC_xx:各个工况计算文件生成
 
-#三、RUN
+#三、DLC_XX
+每一个DLC_XX都有一个相应的类。param_num和param_prj分别是batch.x和batchPrj.x需要替换的参数，
+他们替换的参数的值是一样的。先用beyond_compare软件对比compare_file中的文件确定需要修改的参
+数，再修改程序，基本只需要动几行就可以。
+
+#四、RUN
 运行main.py函数即可，main函数会依次运行以下函数：
 
 1.程序首先加载配置文件，所有工况信息和需要配置的信息都在./Conf/config.json文件下；
