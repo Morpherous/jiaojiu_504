@@ -1,6 +1,7 @@
 from ansys_model import ANSYS_MODEL
-from NAGA_2 import MyProblem, NSGA2_ANSYS
+from NSGA_2 import MyProblem, NSGA2_ANSYS
 from Config import CONFIG
+from util import getjiemian_linec
 import pyansys
 import time
 import os

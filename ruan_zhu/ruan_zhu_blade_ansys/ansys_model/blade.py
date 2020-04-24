@@ -4,6 +4,12 @@ import pandas as pd
 import time
 from pprint import pprint
 
+'''
+为了简化代码，这里直接使用了固定截面数和固定截面点数目，截面数目为46个（这个数目已
+经很大了，因此不用担心由于截面数目过少），截面点数为1000，但实际运行时会对截面进行
+1/50采样，最后点数目为20个
+腹板可以再ANSYS_MODEL类中的create_model中进行修改，默认为单腹板
+'''
 
 class ANSYS_MODEL(object):
     def __init__(self, ansys, opt):

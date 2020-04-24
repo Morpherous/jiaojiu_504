@@ -32,3 +32,13 @@ class CONFIG():
         for k, v in self.__dict__.items():
             print(k, ":", v)
         print('============end==================')
+    def _parse(self,**kwargs):
+        state_dict=self._state_dict()
+        for k,v in kwargs.items():
+            if k not in state_dict:
+                raise ValueError("Key is Error: %s"%k)
+            setattr(self.k,v)
+
+    def _state_dict(self):
+        return {k:getattr(self,k) for k,_ in CONFIG.__dict__.items()
+                if  not k.startswith('_')}

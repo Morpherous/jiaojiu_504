@@ -1,11 +1,18 @@
 import geatpy as ea
 import numpy as np
 
+'''
+此处为Geatpy教程中的类定义，由于在aimFunc中使用了外部函数，因此在初始化时引入model即可，
+详细说明请看Geatpy官方文档。
 
+算法模板里面采用了“遗忘策略”，对于约束优化会让实际进化代数比设定值更多，
+从而让评价次数比预期的高。如果要与预期一样，需要删去Algorithm.py文件中的
+105-118行中的条件语句，即取消“遗忘策略”。
+'''
 class MyProblem(ea.Problem):
     def __init__(self, model):
         self.model = model
-        name = "BNH"
+        name = "Blade"
         M = 3  # 目标维数，重量，应力，应变
         maxormins = [1] * M  # 1最小化，-1最大化
         Dim = 26  # 决策变量 总计12+12+1+1
@@ -47,7 +54,7 @@ class MyProblem(ea.Problem):
         for i in range(1, 27):
             x.append(Vars[:, [i]])
         tempvalue = 12
-        # pop.CV = np.hstack([
+        pop.CV = np.hstack([
         #     # x16 - x15, x17 - x16, x18 - x17, x19 - x18, x20 - x19, x21 - x20,
         #     # x22 - x21, x23 - x22, x24 - x23, x25 - x24, x26 - x25,  # 加强层限制
         #     # x3 - x4, x4 - x5, x5 - x6, x6 - x7, x7 - x8, x8 - x9,
@@ -67,9 +74,20 @@ class MyProblem(ea.Problem):
         #     # weight - 2200,  # 最大重量约束
         #     # 900 - weight,  # 最小重量约束
         #     # x3 - x4, x7 - x8, x12 - x11,  # 主梁帽限制
-        # ])
+        ])
 
 
+'''
+NSGA2_ANSYS类为使用NSGA2优化ansys模型的类，
+
+Args:
+    myproblem:为Geatpy中需要输入的 problem，为MyProblem（）类
+    Encoding:遗传算法编码方式，详细编码方式见Geatpy
+    NIND:种群中个体的个数
+    MAXGEN:最大遗传代数
+    Drawing:Geatpy中的绘图方式，详见Geatpy说明
+
+'''
 class NSGA2_ANSYS():
     def __init__(self, myproblem, Encoding, NIND, MAXGEN, Drawing):
         self.Encoding = Encoding
@@ -91,6 +109,3 @@ class NSGA2_ANSYS():
         print('用时：%f 秒' % (myAlgorithm.passTime))
         print('评价次数：%d 次' % (myAlgorithm.evalsNum))
         print('非支配个体数：%d 个' % (NDSet.sizes))
-        # 算法模板里面采用了“遗忘策略”，对于约束优化会让实际进化代数比设定值更多，
-        # 从而让评价次数比预期的高。如果要与预期一样，
-        # 需要删去Algorithm.py文件中的105-118行中的条件语句，即取消“遗忘策略”。
