@@ -1,4 +1,4 @@
 pyansys==0.39.16
-numpy==1.18.2
+numpy==1.22.0
 geatpy==2.4.0
 pandas==0.25.1
